@@ -1,5 +1,7 @@
 <?php
 	
+	require __DIR__."/account.php";
+
 	$sel_fname = $_POST[$f_name];
 	$sel_lname = $_POST[$l_name];
 	$sel_pass = $_POST[$password];
@@ -9,7 +11,6 @@
 		echo "Fill all fields";
 	} else {
 		require __DIR__."/finditConnect.php";
-		require __DIR__."/account.php";
 		require __DIR__."/getAccount.php";
 
 		$sql = "SELECT $a_acc_id FROM $account_table WHERE $email = '$sel_email'";
