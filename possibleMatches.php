@@ -4,7 +4,7 @@
 	require __DIR__."/report.php";
 	require __DIR__."/feature.php";
 
-	$rep_id = $_GET[$r_report_id];
+	$rep_id = $_POST[$r_report_id];
 
 	$sql = "SELECT $r_report_id, $report_date, $report_place, $item_name, $item_type FROM $report_table WHERE $report_type = 1 AND $r_report_id = $rep_id";
 	$result = $conn->query($sql);
@@ -32,30 +32,30 @@
 	<Matches>";
 	if($result->num_rows > 0) {
 		foreach ($result as $row) {
-			$sql = "SELECT $feature FROM $feature_table WHERE $f_report_id = $row[$r_report_id]";
+			$sql = "SELECT * FROM $feature_table WHERE $f_report_id = $row[$r_report_id]";
 			
 			$feat_result = $conn->query($sql);
 
 			$xmlData = "$xmlData
-			<Match id = '$row[$r_report_id]'>
-			<$item_name> $row[$item_name] </$item_name>
-			<$item_type> $row[$item_type] </$item_type>
-			<$log_date> $row[$log_date] </$log_date>
-			<$report_place> $row[$report_place] </$report_place>
-			<$report_date> $row[$report_date] </$report_date>";
+			<Report>
+			<$r_report_id>$row[$r_report_id]</$r_report_id>
+			<$item_name>$row[$item_name]</$item_name>
+			<$item_type>$row[$item_type]</$item_type>
+			<$log_date>$row[$log_date]</$log_date>
+			<$report_place>$row[$report_place]</$report_place>
+			<$report_date>$row[$report_date]</$report_date>";
 
 				if($feat_result->num_rows > 0) {
-					$xmlData = "$xmlData
-					<$feature_table>";
-
-					foreach($feat_result as $f_row) {
-						$xmlData = $xmlData."
-						<$feature> $f_row[$feature] </$feature>";
+					foreach ($feat_result as $f_row) {
+						$xmlData = "$xmlData
+						<$feature_table>
+						<$f_feat_id>$f_row[$f_feat_id]</$f_feat_id>
+						<$feature>$f_row[$feature]</$feature>
+						</$feature_table>";
 					}
-
-					$xmlData = $xmlData."</$feature_table>";
 				}
-			$xmlData = $xmlData."</Match>";
+				
+			$xmlData = $xmlData."</Report>";
 		}
 	}
 
