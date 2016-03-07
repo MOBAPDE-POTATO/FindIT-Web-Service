@@ -24,13 +24,13 @@
 			$sql = "INSERT INTO $feature_table ($f_report_id, $feature) VALUES ($lastid, $feat)";
 
 			if($conn->query($sql) != TRUE) {
-				echo $conn->error;
+				echo "ERROR: Feature not added!";
 			}
 		}
 
 		echo getReport($lastid);
 	} else {
-		echo $conn->error;
+		echo "ERROR: Report not added!";
 	}
 
 	$conn->close();

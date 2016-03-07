@@ -5,7 +5,7 @@
 	$account_id = $_GET[$r_acc_id];
 
 	if($account_id == '') {
-		echo "Error: No ID was given";
+		echo "ERROR: No ID was given";
 	} else {
 		require_once __DIR__."/finditConnect.php";
 

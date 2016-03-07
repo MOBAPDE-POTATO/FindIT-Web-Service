@@ -6,7 +6,7 @@
 	$sel_email = $_POST[$email];
 
 	if($sel_pass == '' || $sel_email == '') {
-		echo "Fill all fields";
+		echo "ERROR: Fill all fields";
 	} else {
 		require __DIR__."/finditConnect.php";
 		require __DIR__."/getAccount.php";
@@ -19,7 +19,7 @@
 				echo getAccount($row[$a_acc_id]);
 			}
 		} else {
-			echo "No Account for this email yet or invalid credentials!";
+			echo "ERROR: No Account for this email yet or invalid credentials!";
 		}
 
 		$conn->close();
