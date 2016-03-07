@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `findit` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `findit`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: findit
@@ -60,7 +62,7 @@ CREATE TABLE `features` (
   UNIQUE KEY `feature_id_UNIQUE` (`feat_id`),
   KEY `feat_report_idx` (`report_id`),
   CONSTRAINT `feat_report` FOREIGN KEY (`report_id`) REFERENCES `reports` (`report_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +86,7 @@ CREATE TABLE `reports` (
   `acc_id` int(11) NOT NULL,
   `item_name` mediumtext NOT NULL,
   `item_type` int(11) NOT NULL DEFAULT '4' COMMENT '1: ID\n2: Wallet\\Money\n3: Gadget\n4: Others',
-  `log_date` date NOT NULL COMMENT 'date that the item was reported. (Date the item was put into the system)',
+  `log_date` datetime NOT NULL,
   `report_place` longtext NOT NULL,
   `report_date` date NOT NULL COMMENT 'Date that the item was found or lost',
   `report_type` int(11) NOT NULL DEFAULT '1' COMMENT '1: Lost Report\n2: Found Report',
@@ -93,7 +95,7 @@ CREATE TABLE `reports` (
   UNIQUE KEY `report_id_UNIQUE` (`report_id`),
   KEY `acc_report_idx` (`acc_id`),
   CONSTRAINT `acc_report` FOREIGN KEY (`acc_id`) REFERENCES `accounts` (`acc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,8 +104,32 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (3,1,'Nintendo 3DS',3,'2016-03-05','Gokongwei','2015-11-25',1,0),(4,2,'Game Console',3,'2016-03-05','Henry Sy.','2015-11-30',2,0),(5,2,'Nintendo 3DS',3,'2016-03-05','Gokongwei','2015-11-26',2,0);
+INSERT INTO `reports` VALUES (3,1,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-25',1,0),(4,2,'Game Console',3,'2016-03-05 00:00:00','Henry Sy.','2015-11-30',2,0),(5,2,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-26',2,0),(6,1,'Umbrella',4,'2016-03-06 00:00:00','Gokongwei','2015-11-25',1,0),(10,1,'Beanie',4,'2016-03-07 13:15:48','Gokongwei','2014-09-25',1,0),(11,1,'Beanie',4,'2016-03-07 13:17:28','Gokongwei','2014-09-25',1,0);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sales`
+--
+
+DROP TABLE IF EXISTS `sales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales` (
+  `storeID` char(6) DEFAULT NULL,
+  `itemID` char(6) DEFAULT NULL,
+  `custID` char(6) DEFAULT NULL,
+  `price` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales`
+--
+
+LOCK TABLES `sales` WRITE;
+/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -115,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-06  0:55:42
+-- Dump completed on 2016-03-07 22:33:33
