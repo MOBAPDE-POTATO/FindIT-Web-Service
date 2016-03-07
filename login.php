@@ -14,7 +14,7 @@
 		$result = $conn->query($sql);
 		if($result->num_rows > 0) {
 			foreach ($result as $row) {
-				echo getAccount($row[$a_acc_id]);
+				echo $row[$a_acc_id];
 			}
 		} else {
 			echo "No Account for this email yet or invalid credentials!";

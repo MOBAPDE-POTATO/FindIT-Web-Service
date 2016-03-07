@@ -24,7 +24,7 @@
 			if($conn->query($sql) == TRUE) {
 				$last_id = $conn->insert_id;
 
-				echo getAccount($last_id);
+				echo $last_id;
 			} else {
 				echo $conn->error;
 			}
