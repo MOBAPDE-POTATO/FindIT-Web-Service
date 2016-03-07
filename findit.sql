@@ -107,30 +107,6 @@ LOCK TABLES `reports` WRITE;
 INSERT INTO `reports` VALUES (3,1,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-25',1,0),(4,2,'Game Console',3,'2016-03-05 00:00:00','Henry Sy.','2015-11-30',2,0),(5,2,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-26',2,0),(6,1,'Umbrella',4,'2016-03-06 00:00:00','Gokongwei','2015-11-25',1,0),(10,1,'Beanie',4,'2016-03-07 13:15:48','Gokongwei','2014-09-25',1,0),(11,1,'Beanie',4,'2016-03-07 13:17:28','Gokongwei','2014-09-25',1,0);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `sales`
---
-
-DROP TABLE IF EXISTS `sales`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sales` (
-  `storeID` char(6) DEFAULT NULL,
-  `itemID` char(6) DEFAULT NULL,
-  `custID` char(6) DEFAULT NULL,
-  `price` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sales`
---
-
-LOCK TABLES `sales` WRITE;
-/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -141,4 +117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-07 22:33:33
+-- Dump completed on 2016-03-07 22:39:20
