@@ -2,13 +2,13 @@
 
 	header('Content-Type: application/json');
 
-	require __DIR__."/finditConnect.php";
+	require_once __DIR__."/finditConnect.php";
 	require __DIR__."/report.php";
 	require __DIR__."/feature.php";
 
 	$sql = "SELECT * FROM $report_table WHERE $report_type = 1";
 
-	$report_result = $conn->query($sql);
+	$result = $conn->query($sql);
 	$xmlData = "<?xml version = '1.0' encoding = 'UTF-8'?>
 	<Content>";
 
@@ -46,7 +46,7 @@
 
 	$xmlData = "$xmlData
 	</Content>";
-		
+
 	$xml = new SimpleXMLElement($xmlData) or die("Cannot Create Object");
 	$json = json_encode($xml);
 

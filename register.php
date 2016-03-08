@@ -25,7 +25,7 @@
 
 			if($conn->query($sql) == TRUE) {
 				$last_id = $conn->insert_id;
-
+				
 				echo getAccount($last_id);
 			} else {
 				echo "ERROR: Something happened on our side! Contact us instead!";

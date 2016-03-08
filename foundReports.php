@@ -9,7 +9,7 @@
 	// $sql = "SELECT * FROM ".$report_table." JOIN ".$feature_table." ON ".$report_id;
 	$sql = "SELECT * FROM $report_table WHERE $report_type = 2";
 
-	$report_result = $conn->query($sql);
+	$result = $conn->query($sql);
 	$xmlData = "<?xml version = '1.0' encoding = 'UTF-8'?>
 	<Content>";
 

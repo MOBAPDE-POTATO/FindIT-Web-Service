@@ -5,7 +5,7 @@
 	require __DIR__."/report.php";
 	require __DIR__."/feature.php";
 
-	$account_id = $_POST[$r_acc_id];
+	$account_id = $_GET[$r_acc_id];
 
 	if($account_id == '') {
 		echo "ERROR: No ID was given";
@@ -54,6 +54,8 @@
 	
 		$xml = new SimpleXMLElement($xmlData) or die("Cannot Create Object");
 		$json = json_encode($xml);
+
+		print_r($json);
 
 		echo $json;
 		
