@@ -9,16 +9,12 @@
 
 	$report_result = $conn->query($sql);
 	$xmlData = "<?xml version = '1.0' encoding = 'UTF-8'?>
-	<$report_table>";
+	<Content>";
 
-	if($report_result->num_rows > 0) {
-		foreach($report_result as $row) {
-			$sql = "SELECT * FROM $feature_table WHERE $f_report_id = $row[$r_report_id]";
-			
-			$feat_result = $conn->query($sql);
-
+	if($result->num_rows > 0) {
+		foreach ($result as $row) {
 			$xmlData = "$xmlData
-			<Report>
+			<$report_table>
 			<$r_report_id>$row[$r_report_id]</$r_report_id>
 			<$item_name>$row[$item_name]</$item_name>
 			<$item_type>$row[$item_type]</$item_type>
@@ -26,21 +22,27 @@
 			<$report_place>$row[$report_place]</$report_place>
 			<$report_date>$row[$report_date]</$report_date>";
 
-				if($feat_result->num_rows > 0) {
-					foreach ($feat_result as $f_row) {
-						$xmlData = "$xmlData
-						<$feature_table>
-						<$f_feat_id>$f_row[$f_feat_id]</$f_feat_id>
-						<$feature>$f_row[$feature]</$feature>
-						</$feature_table>";
-					}
+			$sql = "SELECT * FROM $feature_table WHERE $f_report_id = $row[$r_report_id]";  
+		
+			$feat_result = $conn->query($sql);
+			if($feat_result->num_rows > 0) {
+				foreach ($feat_result as $f_row) {
+					$xmlData = "$xmlData
+					<$feature_table>
+					<$f_feat_id>$f_row[$f_feat_id]</$f_feat_id>
+					<$feature>$f_row[$feature]</$feature>
+					</$feature_table>";
 				}
-
-			$xmlData = $xmlData."</Report>";
+			} else {
+				echo $conn->error;
+			}
+			
+			$xmlData = $xmlData."</$report_table>";
 		}
-	} 
+	}
 
-	$xmlData = $xmlData."</$report_table>";
+	$xmlData = "$xmlData
+	</Content>";
 	$xml = new SimpleXMLElement($xmlData) or die("Cannot Create Object");
 	$json = json_encode($xml);
 

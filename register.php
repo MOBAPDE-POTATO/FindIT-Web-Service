@@ -19,18 +19,18 @@
 			echo "ERROR: Email already being used!";
 		} else {
 			$sql = "INSERT INTO $account_table ($f_name, $l_name, $password, $email) 
-			VALUES ($sel_fname, $sel_lname, $sel_pass, $sel_email)";
+			VALUES ('$sel_fname', '$sel_lname', '$sel_pass', '$sel_email')";
 
 			if($conn->query($sql) == TRUE) {
 				$last_id = $conn->insert_id;
 
-				echo $last_id;
+				echo getAccount($last_id);
 			} else {
-				echo "ERROR: Registration failed! Try Again!";
+				echo "ERROR: Something happened on our side! Contact us instead!";
 			}
 		}
 
-		$conn()->close();
+		$conn->close();
 	}
 
 ?>
