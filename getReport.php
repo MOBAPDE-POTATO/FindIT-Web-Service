@@ -16,11 +16,13 @@
 				$xmlData = "$xmlData
 				<$report_table>
 				<$r_report_id>$row[$r_report_id]</$r_report_id>
+				<$report_type>$row[$report_type]</$report_type>
 				<$item_name>$row[$item_name]</$item_name>
 				<$item_type>$row[$item_type]</$item_type>
 				<$log_date>$row[$log_date]</$log_date>
 				<$report_place>$row[$report_place]</$report_place>
-				<$report_date>$row[$report_date]</$report_date>";
+				<$report_date>$row[$report_date]</$report_date>
+				<$claimed>$row[$claimed]</$claimed>";
 
 				$sql = "SELECT * FROM $feature_table WHERE $f_report_id = $row[$r_report_id]";  
 			
