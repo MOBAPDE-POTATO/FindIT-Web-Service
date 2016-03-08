@@ -1,5 +1,7 @@
 <?php
 
+	header('Content-Type: application/json');
+
 	function getAccount($id) {
 		require __DIR__."/account.php";
 		require __DIR__."/finditConnect.php";

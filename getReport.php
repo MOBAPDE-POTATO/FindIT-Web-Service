@@ -1,5 +1,7 @@
 <?php
-
+	
+	header('Content-Type: application/json');
+	
 	function getReport($id) {
 		require __DIR__."/finditConnect.php";
 		require __DIR__."/report.php";

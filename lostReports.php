@@ -1,5 +1,7 @@
 <?php
 
+	header('Content-Type: application/json');
+
 	require __DIR__."/finditConnect.php";
 	require __DIR__."/report.php";
 	require __DIR__."/feature.php";
