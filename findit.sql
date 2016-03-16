@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `findit` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `findit`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
 -- Host: localhost    Database: findit
 -- ------------------------------------------------------
--- Server version	5.7.10-log
+-- Server version	5.6.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +34,7 @@ CREATE TABLE `accounts` (
   PRIMARY KEY (`acc_id`),
   UNIQUE KEY `acc_id_UNIQUE` (`acc_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'Miko','Garcia','1234','crymehonions@gmail.com',1),(2,'Joey','Adminston','admin','admin@dlsu.edu.ph',2);
+INSERT INTO `accounts` VALUES (1,'Miko','Garcia','12345678','crymehonions@gmail.com',1),(2,'Joey','Adminston','admin','admin@dlsu.edu.ph',2),(3,'John','Lucas','plsplspls','thisisatest@gmail.com',1),(4,'booya','mahnigg','friedchicken','mahnigg@yahoo.com',1),(5,'John','Martin','lasalletaft','mlucas@yahoo.com',1),(6,'Danny','Cardaddy','whatislove','cardaddy@gmail.com',1),(7,'Denni','Cardenny','whatislove','dontforgetthistime@gmail.com',1),(8,'Martin','Lucas','spongebob','martinlucas@yahoo.com',1);
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `features` (
   UNIQUE KEY `feature_id_UNIQUE` (`feat_id`),
   KEY `feat_report_idx` (`report_id`),
   CONSTRAINT `feat_report` FOREIGN KEY (`report_id`) REFERENCES `reports` (`report_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +71,7 @@ CREATE TABLE `features` (
 
 LOCK TABLES `features` WRITE;
 /*!40000 ALTER TABLE `features` DISABLE KEYS */;
+INSERT INTO `features` VALUES (1,10,'Black'),(2,10,'Wool'),(3,6,'Green'),(4,6,'Fibrella'),(7,19,'color red'),(8,19,'version 1000');
 /*!40000 ALTER TABLE `features` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +87,7 @@ CREATE TABLE `reports` (
   `acc_id` int(11) NOT NULL,
   `item_name` mediumtext NOT NULL,
   `item_type` int(11) NOT NULL DEFAULT '4' COMMENT '1: ID\n2: Wallet\\Money\n3: Gadget\n4: Others',
-  `log_date` datetime NOT NULL,
+  `log_date` date NOT NULL,
   `report_place` longtext NOT NULL,
   `report_date` date NOT NULL COMMENT 'Date that the item was found or lost',
   `report_type` int(11) NOT NULL DEFAULT '1' COMMENT '1: Lost Report\n2: Found Report',
@@ -95,7 +96,7 @@ CREATE TABLE `reports` (
   UNIQUE KEY `report_id_UNIQUE` (`report_id`),
   KEY `acc_report_idx` (`acc_id`),
   CONSTRAINT `acc_report` FOREIGN KEY (`acc_id`) REFERENCES `accounts` (`acc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (3,1,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-25',1,0),(4,2,'Game Console',3,'2016-03-05 00:00:00','Henry Sy.','2015-11-30',2,0),(5,2,'Nintendo 3DS',3,'2016-03-05 00:00:00','Gokongwei','2015-11-26',2,0),(6,1,'Umbrella',4,'2016-03-06 00:00:00','Gokongwei','2015-11-25',1,0),(10,1,'Beanie',4,'2016-03-07 13:15:48','Gokongwei','2014-09-25',1,0),(11,1,'Beanie',4,'2016-03-07 13:17:28','Gokongwei','2014-09-25',1,0);
+INSERT INTO `reports` VALUES (3,1,'Nintendo 3DS',3,'2016-03-05','Gokongwei','2015-11-25',1,0),(4,2,'Game Console',3,'2016-03-05','Henry Sy.','2015-11-30',2,0),(5,2,'Nintendo 3DS',3,'2016-03-05','Gokongwei','2015-11-26',2,0),(6,1,'Umbrella',4,'2016-03-06','Gokongwei','2015-11-25',1,0),(10,1,'Beanie',4,'2016-03-07','Gokongwei','2014-09-25',1,0),(19,8,'sony psp',3,'2016-03-16','goks lobby','2016-03-02',1,0),(21,8,'The Art of War',4,'2016-03-16','andrew','2016-03-01',1,0);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -117,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-07 22:39:20
+-- Dump completed on 2016-03-17  7:14:45
