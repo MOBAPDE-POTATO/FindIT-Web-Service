@@ -3,7 +3,7 @@
 	#CHANGE THESE TO WHAT YOU SET ON YOUR MACHINE
 	$dbhost = "localhost:3306";
 	$dbuser = "root";
-	$dbpass = "p@ssword";
+	$dbpass = "1234";
 	
 	$dbname = "findit";
 
