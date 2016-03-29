@@ -7,5 +7,5 @@
 	$password = "password";
 	$email = "email";
 	$acc_type = "acc_type";
-
+	$gcm_id = "gcm_id";
 ?>

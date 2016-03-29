@@ -4,6 +4,7 @@
 	
 	require __DIR__."/account.php";
 
+	$sel_gcm = $_POST[$gcm_id];
 	$sel_fname = $_POST[$f_name];
 	$sel_lname = $_POST[$l_name];
 	$sel_pass = $_POST[$password];
@@ -20,8 +21,8 @@
 		if($result->num_rows > 0) {
 			echo "ERROR: Email already being used!";
 		} else {
-			$sql = "INSERT INTO $account_table ($f_name, $l_name, $password, $email) 
-			VALUES ('$sel_fname', '$sel_lname', '$sel_pass', '$sel_email')";
+			$sql = "INSERT INTO $account_table ($gcm_id, $f_name, $l_name, $password, $email) 
+			VALUES ('$sel_gcm', '$sel_fname', '$sel_lname', '$sel_pass', '$sel_email')";
 
 			if($conn->query($sql) == TRUE) {
 				$last_id = $conn->insert_id;
