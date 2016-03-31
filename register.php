@@ -30,6 +30,7 @@
 				echo getAccount($last_id);
 			} else {
 				echo "ERROR: Something happened on our side! Contact us instead!";
+				echo $conn->error;
 			}
 		}
 
