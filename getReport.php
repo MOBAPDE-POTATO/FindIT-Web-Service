@@ -52,8 +52,6 @@
 		$json = json_encode($xml);
 
 		return $json;
-
-		$conn->close();
 	}
 
 ?>
