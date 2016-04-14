@@ -35,6 +35,39 @@
 			echo getReport($lastid);
 		}
 
+		
+		if($sel_r_type == 2) {
+			//send a notifications
+			require __DIR__."/account.php";
+			$sql = "SELECT DISTINCT $report_table.$r_acc_id, $gcm_id FROM $report_table, $account_table 
+					WHERE $report_type <> $sel_r_type 
+					AND $report_table.$r_acc_id = $account_table.$a_acc_id 
+					AND $item_type = $sel_i_type
+					AND (
+						$item_name LIKE '$sel_item'
+						OR $report_date = $sel_date
+						OR $report_place LIKE '$sel_place'
+					)";
+			
+			$results = $conn->query($sql);
+			if($results->num_rows > 0) {
+				$deviceID = array();
+
+				foreach ($results as $row) {
+					$deviceID[] = $row[$gcm_id];
+					echo $row[$gcm_id];
+				}
+
+				require __DIR__."/GCMPushMessage.php";
+
+				$sender = new GCMPushMessage("AIzaSyAy5PvE-LxIMQs_AgsRLwduIKGQBlXtnMM");
+				$sender->setDevices($deviceID);
+				$temp = $sender->send("New Possible Match to a lost item");
+				echo $temp;
+			}
+		} 
+
+
 	} else {
 		echo "ERROR: Report not added!\n";
 		echo $sql."\n";
