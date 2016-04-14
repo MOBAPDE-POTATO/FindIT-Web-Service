@@ -22,7 +22,7 @@
 	}
 
 	$sql = "SELECT * FROM $report_table
-			WHERE $report_type = 2
+			WHERE $report_type <> $sel_r_type
 			AND (
 				$item_name LIKE '$sel_name'
 				OR $report_date = $sel_date
