@@ -8,7 +8,7 @@
 
 	$rep_id = $_POST[$r_report_id];
 
-	$sql = "SELECT $r_report_id, $report_date, $report_place, $item_name, $item_type FROM $report_table WHERE $report_type = 1 AND $r_report_id = $rep_id";
+	$sql = "SELECT $r_report_id, $report_date, $report_place, $report_type, $item_name, $item_type FROM $report_table WHERE $r_report_id = $rep_id";
 	$result = $conn->query($sql);
 
 	if($result->num_rows > 0) {
@@ -17,11 +17,12 @@
 			$sel_date = $row[$report_date];
 			$sel_place = $row[$report_place];
 			$sel_type = $row[$item_type];
+			$sel_r_type = $row[$report_type];
 		}
 	}
 
 	$sql = "SELECT * FROM $report_table
-			WHERE $report_type = 2
+			WHERE $report_type <> $sel_r_type
 			AND $item_type = $sel_type
 			AND (
 				$item_name LIKE '$sel_name'
